@@ -1,0 +1,102 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CadastroClientes extends JFrame {
+
+    public CadastroClientes() {
+        setTitle("Cadastro de Clientes");
+        setSize(500, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel(new GridLayout(11, 2, 5, 5));
+
+        JTextField txtCodigo = new JTextField();
+        JTextField txtNome = new JTextField();
+        JTextField txtEndereco = new JTextField();
+        JTextField txtBairro = new JTextField();
+        JTextField txtCidade = new JTextField();
+        String[] estados = {"SP", "RJ", "MG", "RS"};
+        JComboBox<String> cbEstado = new JComboBox<>(estados);
+        JTextField txtCep = new JTextField();
+        JTextField txtTelefone = new JTextField();
+        JTextArea txtObservacoes = new JTextArea();
+
+        panel.add(new JLabel("Código:")); panel.add(txtCodigo);
+        panel.add(new JLabel("Nome:")); panel.add(txtNome);
+        panel.add(new JLabel("Endereço:")); panel.add(txtEndereco);
+        panel.add(new JLabel("Bairro:")); panel.add(txtBairro);
+        panel.add(new JLabel("Cidade:")); panel.add(txtCidade);
+        panel.add(new JLabel("Estado:")); panel.add(cbEstado);
+        panel.add(new JLabel("CEP:")); panel.add(txtCep);
+        panel.add(new JLabel("Telefone:")); panel.add(txtTelefone);
+        panel.add(new JLabel("Observações:")); panel.add(txtObservacoes);
+
+        JButton btnNovo = new JButton("Novo");
+        JButton btnSalvar = new JButton("Salvar");
+        JButton btnAlterar = new JButton("Alterar");
+        JButton btnExcluir = new JButton("Excluir");
+        JButton btnRelatorio = new JButton("Relatório");
+        JButton btnRetornar = new JButton("Retornar");
+
+        btnNovo.addActionListener(e -> {
+            txtCodigo.setText("");
+            txtNome.setText("");
+            txtEndereco.setText("");
+            txtBairro.setText("");
+            txtCidade.setText("");
+            cbEstado.setSelectedIndex(0);
+            txtCep.setText("");
+            txtTelefone.setText("");
+            txtObservacoes.setText("");
+        });
+
+        btnSalvar.addActionListener(e -> {
+            String dados = "Cadastro salvo:\n"
+                + "Código: " + txtCodigo.getText() + "\n"
+                + "Nome: " + txtNome.getText() + "\n"
+                + "Endereço: " + txtEndereco.getText();
+            JOptionPane.showMessageDialog(this, dados);
+        });
+
+        btnAlterar.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Cadastro alterado com sucesso!");
+        });
+
+        btnExcluir.addActionListener(e -> {
+            int opcao = JOptionPane.showConfirmDialog(this, "Deseja excluir este cadastro?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (opcao == JOptionPane.YES_OPTION) {
+                txtCodigo.setText("");
+                txtNome.setText("");
+                txtEndereco.setText("");
+                txtBairro.setText("");
+                txtCidade.setText("");
+                cbEstado.setSelectedIndex(0);
+                txtCep.setText("");
+                txtTelefone.setText("");
+                txtObservacoes.setText("");
+                JOptionPane.showMessageDialog(this, "Cadastro excluído.");
+            }
+        });
+
+        btnRelatorio.addActionListener(e -> {
+            String relatorio = "Relatório:\n"
+                + "Nome: " + txtNome.getText() + "\n"
+                + "Cidade: " + txtCidade.getText();
+            JOptionPane.showMessageDialog(this, relatorio);
+        });
+
+        btnRetornar.addActionListener(e -> {
+            new HomeTela();
+            dispose();
+        });
+
+        panel.add(btnNovo);     panel.add(btnSalvar);
+        panel.add(btnAlterar);  panel.add(btnExcluir);
+        panel.add(btnRelatorio);panel.add(btnRetornar);
+
+        add(panel);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
