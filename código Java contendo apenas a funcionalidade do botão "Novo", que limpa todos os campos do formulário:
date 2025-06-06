@@ -1,0 +1,60 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CadastroClientesNovo {
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Cadastro de Clientes - Novo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+
+        JPanel panel = new JPanel(new GridLayout(10, 2));
+
+        // Campos do formulário
+        JTextField txtCodigo = new JTextField();
+        JTextField txtNome = new JTextField();
+        JTextField txtEndereco = new JTextField();
+        JTextField txtBairro = new JTextField();
+        JTextField txtCidade = new JTextField();
+        String[] estados = {"SP", "RJ", "MG", "RS"};
+        JComboBox<String> cbEstado = new JComboBox<>(estados);
+        JTextField txtCep = new JTextField();
+        JTextField txtTelefone = new JTextField();
+        JTextArea txtObservacoes = new JTextArea();
+
+        // Adicionando os campos ao painel com seus rótulos
+        panel.add(new JLabel("Código:")); panel.add(txtCodigo);
+        panel.add(new JLabel("Nome:")); panel.add(txtNome);
+        panel.add(new JLabel("Endereço:")); panel.add(txtEndereco);
+        panel.add(new JLabel("Bairro:")); panel.add(txtBairro);
+        panel.add(new JLabel("Cidade:")); panel.add(txtCidade);
+        panel.add(new JLabel("Estado:")); panel.add(cbEstado);
+        panel.add(new JLabel("CEP:")); panel.add(txtCep);
+        panel.add(new JLabel("Telefone:")); panel.add(txtTelefone);
+        panel.add(new JLabel("Observações:")); panel.add(txtObservacoes);
+
+        // Botão Novo
+        JButton btnNovo = new JButton("Novo");
+        btnNovo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                txtCodigo.setText("");
+                txtNome.setText("");
+                txtEndereco.setText("");
+                txtBairro.setText("");
+                txtCidade.setText("");
+                cbEstado.setSelectedIndex(0);
+                txtCep.setText("");
+                txtTelefone.setText("");
+                txtObservacoes.setText("");
+            }
+        });
+
+        // Adiciona o botão ao painel
+        panel.add(btnNovo);
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+}
