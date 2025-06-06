@@ -1,0 +1,43 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CadastroClientesRelatorio {
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Cadastro de Clientes - Relatório");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 400);
+
+        JPanel panel = new JPanel(new BorderLayout());
+
+        // Área de exibição do relatório
+        JTextArea areaRelatorio = new JTextArea();
+        areaRelatorio.setEditable(false);
+        JScrollPane scroll = new JScrollPane(areaRelatorio);
+
+        // Botão Relatório
+        JButton btnRelatorio = new JButton("Gerar Relatório");
+        btnRelatorio.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Dados simulados para o relatório
+                String relatorio = "=== Relatório de Clientes ===\n";
+                relatorio += "Código: 101 | Nome: Ana Lima | Cidade: São Paulo | Estado: SP\n";
+                relatorio += "Código: 102 | Nome: Carlos Souza | Cidade: Rio de Janeiro | Estado: RJ\n";
+                relatorio += "Código: 103 | Nome: Fernanda Costa | Cidade: Belo Horizonte | Estado: MG\n";
+                relatorio += "Código: 104 | Nome: Pedro Rocha | Cidade: Porto Alegre | Estado: RS\n";
+                relatorio += "===============================\n";
+
+                areaRelatorio.setText(relatorio);
+            }
+        });
+
+        panel.add(scroll, BorderLayout.CENTER);
+        panel.add(btnRelatorio, BorderLayout.SOUTH);
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+}
+
