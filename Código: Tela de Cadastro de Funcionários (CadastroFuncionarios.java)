@@ -1,0 +1,97 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class CadastroFuncionarios extends JFrame {
+
+    public CadastroFuncionarios() {
+        setTitle("Cadastro de Funcionários");
+        setSize(500, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        JPanel panel = new JPanel(new GridLayout(10, 2, 5, 5));
+
+        JTextField txtId = new JTextField();
+        JTextField txtNome = new JTextField();
+        JTextField txtCargo = new JTextField();
+        JTextField txtDepartamento = new JTextField();
+        JTextField txtCpf = new JTextField();
+        JTextField txtTelefone = new JTextField();
+        JTextField txtEmail = new JTextField();
+        JTextArea txtObservacoes = new JTextArea();
+
+        panel.add(new JLabel("ID:")); panel.add(txtId);
+        panel.add(new JLabel("Nome:")); panel.add(txtNome);
+        panel.add(new JLabel("Cargo:")); panel.add(txtCargo);
+        panel.add(new JLabel("Departamento:")); panel.add(txtDepartamento);
+        panel.add(new JLabel("CPF:")); panel.add(txtCpf);
+        panel.add(new JLabel("Telefone:")); panel.add(txtTelefone);
+        panel.add(new JLabel("Email:")); panel.add(txtEmail);
+        panel.add(new JLabel("Observações:")); panel.add(txtObservacoes);
+
+        JButton btnNovo = new JButton("Novo");
+        JButton btnSalvar = new JButton("Salvar");
+        JButton btnAlterar = new JButton("Alterar");
+        JButton btnExcluir = new JButton("Excluir");
+        JButton btnRelatorio = new JButton("Relatório");
+        JButton btnRetornar = new JButton("Retornar");
+
+        btnNovo.addActionListener(e -> {
+            txtId.setText("");
+            txtNome.setText("");
+            txtCargo.setText("");
+            txtDepartamento.setText("");
+            txtCpf.setText("");
+            txtTelefone.setText("");
+            txtEmail.setText("");
+            txtObservacoes.setText("");
+        });
+
+        btnSalvar.addActionListener(e -> {
+            String dados = "Funcionário salvo:\n"
+                + "ID: " + txtId.getText() + "\n"
+                + "Nome: " + txtNome.getText() + "\n"
+                + "Cargo: " + txtCargo.getText();
+            JOptionPane.showMessageDialog(this, dados);
+        });
+
+        btnAlterar.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Dados do funcionário alterados com sucesso!");
+        });
+
+        btnExcluir.addActionListener(e -> {
+            int opcao = JOptionPane.showConfirmDialog(this, "Deseja excluir este funcionário?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (opcao == JOptionPane.YES_OPTION) {
+                txtId.setText("");
+                txtNome.setText("");
+                txtCargo.setText("");
+                txtDepartamento.setText("");
+                txtCpf.setText("");
+                txtTelefone.setText("");
+                txtEmail.setText("");
+                txtObservacoes.setText("");
+                JOptionPane.showMessageDialog(this, "Funcionário excluído.");
+            }
+        });
+
+        btnRelatorio.addActionListener(e -> {
+            String relatorio = "Relatório:\n"
+                + "Nome: " + txtNome.getText() + "\n"
+                + "Cargo: " + txtCargo.getText();
+            JOptionPane.showMessageDialog(this, relatorio);
+        });
+
+        btnRetornar.addActionListener(e -> {
+            new HomeTela(); // Volta para a tela Home
+            dispose();
+        });
+
+        panel.add(btnNovo);      panel.add(btnSalvar);
+        panel.add(btnAlterar);   panel.add(btnExcluir);
+        panel.add(btnRelatorio); panel.add(btnRetornar);
+
+        add(panel);
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
