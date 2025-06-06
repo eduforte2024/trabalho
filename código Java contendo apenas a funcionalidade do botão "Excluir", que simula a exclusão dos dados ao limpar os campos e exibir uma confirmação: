@@ -1,0 +1,71 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CadastroClientesExcluir {
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Cadastro de Clientes - Excluir");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+
+        JPanel panel = new JPanel(new GridLayout(10, 2));
+
+        // Campos do formulário preenchidos com dados fictícios
+        JTextField txtCodigo = new JTextField("123");
+        JTextField txtNome = new JTextField("Maria Oliveira");
+        JTextField txtEndereco = new JTextField("Av. Central, 456");
+        JTextField txtBairro = new JTextField("Jardim");
+        JTextField txtCidade = new JTextField("Rio de Janeiro");
+        String[] estados = {"SP", "RJ", "MG", "RS"};
+        JComboBox<String> cbEstado = new JComboBox<>(estados);
+        cbEstado.setSelectedItem("RJ");
+        JTextField txtCep = new JTextField("20000-000");
+        JTextField txtTelefone = new JTextField("(21) 98888-8888");
+        JTextArea txtObservacoes = new JTextArea("Cliente com pendências");
+
+        // Adicionando os campos ao painel com seus rótulos
+        panel.add(new JLabel("Código:")); panel.add(txtCodigo);
+        panel.add(new JLabel("Nome:")); panel.add(txtNome);
+        panel.add(new JLabel("Endereço:")); panel.add(txtEndereco);
+        panel.add(new JLabel("Bairro:")); panel.add(txtBairro);
+        panel.add(new JLabel("Cidade:")); panel.add(txtCidade);
+        panel.add(new JLabel("Estado:")); panel.add(cbEstado);
+        panel.add(new JLabel("CEP:")); panel.add(txtCep);
+        panel.add(new JLabel("Telefone:")); panel.add(txtTelefone);
+        panel.add(new JLabel("Observações:")); panel.add(txtObservacoes);
+
+        // Botão Excluir
+        JButton btnExcluir = new JButton("Excluir");
+        btnExcluir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int confirmacao = JOptionPane.showConfirmDialog(
+                        frame,
+                        "Tem certeza que deseja excluir este cadastro?",
+                        "Confirmação",
+                        JOptionPane.YES_NO_OPTION
+                );
+                if (confirmacao == JOptionPane.YES_OPTION) {
+                    txtCodigo.setText("");
+                    txtNome.setText("");
+                    txtEndereco.setText("");
+                    txtBairro.setText("");
+                    txtCidade.setText("");
+                    cbEstado.setSelectedIndex(0);
+                    txtCep.setText("");
+                    txtTelefone.setText("");
+                    txtObservacoes.setText("");
+                    JOptionPane.showMessageDialog(frame, "Cadastro excluído com sucesso!");
+                }
+            }
+        });
+
+        // Adiciona o botão ao painel
+        panel.add(btnExcluir);
+
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+}
+
